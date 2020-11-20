@@ -7,6 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="flatlaf-demo-0.42" level="project" />
+    <orderEntry type="library" name="RojeruSan.lib" level="project" />
   </component>
 </module>
-
