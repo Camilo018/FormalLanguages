@@ -8,4 +8,9 @@ public class MainView extends JFrame {
     public MainView() throws HeadlessException {
 
     }
+
+    private void MainViewInstances(){
+
+    }
+
 }
