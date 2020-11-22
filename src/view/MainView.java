@@ -1,4 +1,11 @@
 package view;
 
-public class MainView {
+import javax.swing.*;
+import java.awt.*;
+
+public class MainView extends JFrame {
+
+    public MainView() throws HeadlessException {
+
+    }
 }
