@@ -7,6 +7,8 @@ import view.MainJPanel;
 
 import view.MainView;
 
+import javax.swing.*;
+
 public class Runner {
 	
 	public static void main(String[] args) {
