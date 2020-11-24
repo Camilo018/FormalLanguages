@@ -6,27 +6,27 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GenericTreeNode<T> {
+public class TreeNode<T> {
 
     private T data;
-    private List<GenericTreeNode<T>> children;
-    private GenericTreeNode<T> parent;
+    private List<TreeNode<T>> children;
+    private TreeNode<T> parent;
 
-    public GenericTreeNode() {
+    public TreeNode() {
         super();
-        children = new ArrayList<GenericTreeNode<T>>();
+        children = new ArrayList<TreeNode<T>>();
     }
 
-    public GenericTreeNode(T data) {
+    public TreeNode(T data) {
         this();
         setData(data);
     }
 
-    public GenericTreeNode<T> getParent() {
+    public TreeNode<T> getParent() {
         return this.parent;
     }
 
-    public List<GenericTreeNode<T>> getChildren() {
+    public List<TreeNode<T>> getChildren() {
         return this.children;
     }
 
@@ -38,33 +38,33 @@ public class GenericTreeNode<T> {
         return (getNumberOfChildren() > 0);
     }
 
-    public void setChildren(List<GenericTreeNode<T>> children) {
-        for(GenericTreeNode<T> child : children) {
+    public void setChildren(List<TreeNode<T>> children) {
+        for(TreeNode<T> child : children) {
            child.parent = this;
         }
 
         this.children = children;
     }
 
-    public void addChild(GenericTreeNode<T> child) {
+    public void addChild(TreeNode<T> child) {
         child.parent = this;
         children.add(child);
     }
 
-    public void addChildAt(int index, GenericTreeNode<T> child) throws IndexOutOfBoundsException {
+    public void addChildAt(int index, TreeNode<T> child) throws IndexOutOfBoundsException {
         child.parent = this;
         children.add(index, child);
     }
 
     public void removeChildren() {
-        this.children = new ArrayList<GenericTreeNode<T>>();
+        this.children = new ArrayList<TreeNode<T>>();
     }
 
     public void removeChildAt(int index) throws IndexOutOfBoundsException {
         children.remove(index);
     }
 
-    public GenericTreeNode<T> getChildAt(int index) throws IndexOutOfBoundsException {
+    public TreeNode<T> getChildAt(int index) throws IndexOutOfBoundsException {
         return children.get(index);
     }
 
@@ -91,7 +91,7 @@ public class GenericTreeNode<T> {
         if (getClass() != obj.getClass()) {
            return false;
         }
-        GenericTreeNode<?> other = (GenericTreeNode<?>) obj;
+        TreeNode<?> other = (TreeNode<?>) obj;
         if (data == null) {
            if (other.data != null) {
               return false;
@@ -116,7 +116,7 @@ public class GenericTreeNode<T> {
     public String toStringVerbose() {
         String stringRepresentation = getData().toString() + ":[";
 
-        for (GenericTreeNode<T> node : getChildren()) {
+        for (TreeNode<T> node : getChildren()) {
             stringRepresentation += node.getData().toString() + ", ";
         }
 
