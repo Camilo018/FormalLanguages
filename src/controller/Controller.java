@@ -12,7 +12,7 @@ public class Controller implements ActionListener {
     private Grammar grammar;
     private MainView mainView;
 
-    public Controller() {
+    public Controller() throws InterruptedException {
         this.grammar = new Grammar();
         this.mainView = new MainView(this);
     }
