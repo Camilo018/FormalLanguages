@@ -2,7 +2,6 @@ package runner;
 
 
 import com.formdev.flatlaf.intellijthemes.FlatGradiantoMidnightBlueIJTheme;
-import view.MainJPanel;
 
 
 import view.MainView;
