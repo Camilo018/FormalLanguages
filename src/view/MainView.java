@@ -76,4 +76,16 @@ public class MainView extends JFrame {
     public void addListAxioma(String axiomaticSymbol) {
         this.mainJPanel.addListAxioma(axiomaticSymbol);
     }
+
+    public void acceptInfo(ActionListener actionListener) {
+        this.mainJPanel.acceptInfo(actionListener);
+    }
+
+    public String validateWord() {
+        return this.mainJPanel.validateWord();
+    }
+
+    public void showValidateWord(String derivationTreeText) {
+        this.mainJPanel.showValidateWord(derivationTreeText);
+    }
 }

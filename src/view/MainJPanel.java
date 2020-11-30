@@ -28,7 +28,11 @@ public class MainJPanel extends JPanel {
     private JComboBox<String> showSymbolsTerminals;
     private JComboBox<String> showSymbolsNotTerminals;
     private JComboBox<String> showAxioma;
-    private  JComboBox<String> showProductions;
+    private JComboBox<String> showProductions;
+    private RSMTextFull rsmTextFull;
+    private JLabel derivateWordTree;
+
+
 
 
     public MainJPanel(ActionListener actionListener) {
@@ -39,10 +43,12 @@ public class MainJPanel extends JPanel {
 
     private void mainJPanelInstances(ActionListener actionListener) {
         this.backGroundImage();
-        this.showSymbolsTerminals = new JComboBox<>();
-        this.showSymbolsNotTerminals = new JComboBox<>();
-        this.showAxioma = new JComboBox<>();
-        this.showProductions = new JComboBox<>();
+        this.derivateWordTree = new JLabel();
+        this.rsmTextFull = Constants.rsmTextFull("Ingrese la palabra que desea validar");
+        this.showSymbolsTerminals = Constants.comboBoxDefault();
+        this.showSymbolsNotTerminals = Constants.comboBoxDefault();
+        this.showAxioma = Constants.comboBoxDefault();
+        this.showProductions = Constants.comboBoxDefault();
 
         this.showInfoPanel = new JPanel();
         this.fieldSymbolsNotTerminal = this.fieldSymbolsNotTerminal();
@@ -53,6 +59,8 @@ public class MainJPanel extends JPanel {
         this.leftPanel = this.leftPanelFeatures();
         this.rightPanelInformation = this.rightPanelInformationFeatures(actionListener);
     }
+
+
 
     private RSMTextFull headerProduction() {
         return Constants.rsmTextFull("Agregar una ->");
@@ -199,6 +207,8 @@ public class MainJPanel extends JPanel {
     private JPanel leftPanelFeatures() {
         JPanel leftPanel = new JPanel();
         leftPanel.setOpaque(false);
+        leftPanel.setLayout(new BorderLayout());
+
         return leftPanel;
     }
 
@@ -286,5 +296,36 @@ public class MainJPanel extends JPanel {
         showAxioma.addItem(axiomaticSymbol);
         System.out.println("EL AXIOMA ES" + axiomaticSymbol);
         this.repaint();
+    }
+
+    public void acceptInfo(ActionListener actionListener) {
+        RSButtonRiple validateBtn = Constants.btnRipleTwo("Validar", MainActivity.VALIDATE_WORD.toString(), actionListener, "#2ecc71");
+        JPanel validateWordPanel = new JPanel(new GridLayout(1,2));
+        validateWordPanel.setOpaque(false);
+        validateWordPanel.add(Constants.insidePanel(rsmTextFull, 0, 50,0,50, "#0000", false));
+        validateWordPanel.add(Constants.insidePanel(validateBtn, 0, 50,0,50, "#0000", false));
+        leftPanel.add(Constants.insidePanel(validateWordPanel, 50, 50,10,50, "#0000", false), BorderLayout.PAGE_START);
+        this.leftPanel.add(Constants.insidePanel(derivateWordTree, 50, 50,10,50, "#0000", false), BorderLayout.CENTER);
+
+        this.leftPanel.repaint();
+        this.repaint();
+        this.revalidate();
+    }
+
+    public String validateWord() {
+        return this.rsmTextFull.getText();
+    }
+
+    public void showValidateWord(String derivationTreeText) {
+        this.derivateWordTree.setFont(Constants.ralewayFontLabel);
+        this.derivateWordTree.setText(derivationTreeText);
+        this.derivateWordTree.setHorizontalAlignment(JLabel.CENTER);
+        this.derivateWordTree.setVerticalAlignment(JLabel.TOP);
+        this.derivateWordTree.setHorizontalTextPosition(JLabel.CENTER);
+        this.derivateWordTree.setVerticalTextPosition(JLabel.TOP);
+
+        this.leftPanel.repaint();
+        this.repaint();
+        this.revalidate();
     }
 }

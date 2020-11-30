@@ -23,7 +23,9 @@ public class Constants {
     public static final String BACKGROUND_IMAGE = "/images/background.jpg";
     public static final String PERSONS_PROJECT = "<html><body align=\"justify\"> Este proyecto es presentado por: <br><br>" + " - Cristian Camilo Lopez Niño <br>" + " - Juan Camilo Hurtado Baez<br>" +
             " - Brayan Steven Pineda Pachon </body></html>";
-    public static Font ralewayFont = new Font("Raleway", Font.PLAIN, 18);
+    public static Font ralewayFont = new Font("Raleway", Font.PLAIN, 20);
+    public static Font ralewayFontLabel = new Font("Raleway", Font.PLAIN, 25);
+
 
 
     public static JLabel getSpace(int top, int left, int bottom, int right) {
@@ -99,5 +101,14 @@ public class Constants {
         rsmTextFull.setFont(new Font("Raleway", Font.PLAIN, 16));
         rsmTextFull.setBackground(Color.decode("#34495e"));
         return rsmTextFull;
+    }
+
+    public static JComboBox<String> comboBoxDefault() {
+        JComboBox<String> jComboBox = new JComboBox<>();
+        jComboBox.setFont(Constants.ralewayFont);
+        jComboBox.setForeground(Color.white);
+
+
+        return  jComboBox;
     }
 }

@@ -21,7 +21,7 @@ public class Grammar {
         this.terminalSymbols = new ArrayList<>();
         this.axiomaticSymbol = "";
         this.productions = new ArrayList<>();
-        this.derivationTreeText = "<html>";
+        this.derivationTreeText = "<html><body>";
     }
 
     public boolean validateWord(String word) {
@@ -121,7 +121,7 @@ public class Grammar {
         }
 
         showTree(auxNArio.getRoot());
-        derivationTreeText += "Es aceptado </html>";
+        derivationTreeText += "Es aceptado </body></html>";
         return auxNArio;
     }
 

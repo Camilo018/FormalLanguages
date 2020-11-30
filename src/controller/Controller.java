@@ -27,7 +27,7 @@ public class Controller implements ActionListener {
                 break;
 
             case ACCEPT_INFO:
-
+                this.acceptInfo();
                 break;
 
             case ADD_PRODUCTION:
@@ -39,9 +39,22 @@ public class Controller implements ActionListener {
             case ADD_SYMBOL_NOT_TERMINAL:
                 this.addSymbolNotTermianl();
                 break;
+            case VALIDATE_WORD:
+                this.validate_word();
+                break;
 
         }
 
+    }
+
+    private void validate_word() {
+        grammar.validateWord(this.mainView.validateWord());
+        System.out.println(grammar.getDerivationTreeText());
+        mainView.showValidateWord(grammar.getDerivationTreeText());
+    }
+
+    private void acceptInfo() {
+        this.mainView.acceptInfo(this);
     }
 
     private void addSymbolNotTermianl() {
