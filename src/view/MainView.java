@@ -36,22 +36,22 @@ public class MainView extends JFrame {
     }
 
     public String getSymbolNotTermianl() {
-        return "";
+        return mainJPanel.getSymbolNotTermianl();
     }
 
     public String getSymbolTerminal() {
-        return "";
+        return mainJPanel.getSymbolTerminal();
     }
 
     public String getHeaderProduction() {
-        return "";
+        return mainJPanel.getHeaderProduction();
     }
 
     public String getBodyProduction() {
-        return "";
+        return mainJPanel.getBodyProduction();
     }
 
     public String getAxioma() {
-        return "";
+        return mainJPanel.getAxioma();
     }
 }

@@ -211,4 +211,23 @@ public class MainJPanel extends JPanel {
     }
 
 
+    public String getSymbolNotTermianl() {
+        return fieldSymbolsNotTerminal.getText();
+    }
+
+    public String getSymbolTerminal() {
+        return fieldSymbolsTerminal.getText();
+    }
+
+    public String getHeaderProduction() {
+        return headerProduction.getText();
+    }
+
+    public String getBodyProduction() {
+        return bodyProduction.getText();
+    }
+
+    public String getAxioma() {
+        return listSymbolsTerminalToAxioma.getItemAt(1);
+    }
 }
