@@ -57,7 +57,6 @@ public class Grammar {
 
                 }
             }
-          //  flag = true;
             list = aux;
         }
         if (isAccept)
@@ -68,6 +67,27 @@ public class Grammar {
         return isAccept;
     }
 
+    public NTree<String> treeNArio(String input) {
+        NTree<String> treeNArio = new NTree<>(input, String::compareTo);
+        NodeTree<String> root = derivationTree.search(input);
+
+        while (root != derivationTree.getRoot()) {
+            treeNArio.addSon(root.getInfo(), root.getFather().getInfo());
+            root = root.getFather();
+        }
+
+        NTree<String> auxNArio =new NTree<>(axiomaticSymbol, String::compareTo);
+
+        NodeTree<String> rootAux = treeNArio.search(axiomaticSymbol);
+        while (rootAux != treeNArio.getRoot()) {
+            auxNArio.addSon(rootAux.getInfo(), rootAux.getFather().getInfo());
+            rootAux = rootAux.getFather();
+        }
+
+        showTree(auxNArio.getRoot());
+        derivationTreeText += "Es aceptado </body></html>";
+        return auxNArio;
+    }
 
     private void fillTree(ArrayList<String> list) {
         for (String string2 : list) {
@@ -102,28 +122,6 @@ public class Grammar {
             }
         }
         return true;
-    }
-
-    public NTree<String> treeNArio(String input) {
-        NTree<String> treeNArio = new NTree<>(input, String::compareTo);
-        NodeTree<String> root = derivationTree.search(input);
-
-        while (root != derivationTree.getRoot()) {
-            treeNArio.addSon(root.getInfo(), root.getFather().getInfo());
-            root = root.getFather();
-        }
-
-        NTree<String> auxNArio =new NTree<>(axiomaticSymbol, String::compareTo);
-
-        NodeTree<String> rootAux = treeNArio.search(axiomaticSymbol);
-        while (rootAux != treeNArio.getRoot()) {
-            auxNArio.addSon(rootAux.getInfo(), rootAux.getFather().getInfo());
-            rootAux = rootAux.getFather();
-        }
-
-        showTree(auxNArio.getRoot());
-        derivationTreeText += "Es aceptado </body></html>";
-        return auxNArio;
     }
 
     public ArrayList<String> changeText(String text) {
