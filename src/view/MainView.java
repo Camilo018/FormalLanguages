@@ -36,4 +36,15 @@ public class MainView extends JFrame {
     }
 
 
+    public void addSymbolNotTermianl() {
+    }
+
+    public void addSymbolTerminal() {
+    }
+
+    public void addProduction() {
+    }
+
+    public void addAxioma() {
+    }
 }
