@@ -23,34 +23,32 @@ public class Grammar {
         this.derivationTreeText = "<html>";
     }
 
-    public boolean validateWord(String input) {
-        return recursiveValidateWord(input, changeText(axiomaticSymbol));
+    public boolean validateWord(String word) {
+        return recursiveValidateWord(word, changeText(axiomaticSymbol));
     }
 
-    /*
-    Recorre recursivamente el arbol para buscar si una palabra existe en el lenguaje
-     */
     public boolean recursiveValidateWord(String input, ArrayList<String> list) {
         boolean flag = false;
         boolean isAccept = false;
 
-        for (String string2 : changeText(axiomaticSymbol)) {
-            derivationTree.addSon(axiomaticSymbol, string2);
-        }
+        derivationTree = new NTree<>(axiomaticSymbol, String::compareTo);
+
+        fillTree(list);
+
         while (!flag) {
             ArrayList<String> aux = new ArrayList<>();
-            for (String string : list) {
-                if (isTerminal(string)) {
-                    if (string.compareTo(input) == 0) {
+            for (String word : list) {
+                if (haveTerminalSymbol(word)) {
+                    if (word.compareTo(input) == 0) {
                         isAccept = true;
                         flag = true;
                         break;
                     }
                 } else {
-                    if (countVar(string) <= input.length()) {
-                        for (String string2 : changeText(string)) {
-                            derivationTree.addSon(string, string2);
-                            aux.add(string2);
+                    if (countVar(word) <= input.length()) {
+                        for (String word2 : changeText(word)) {
+                            derivationTree.addSon(word, word2);
+                            aux.add(word2);
                         }
                     } else {
                         flag = true;
@@ -66,6 +64,13 @@ public class Grammar {
             derivationTreeText = "No pertenece al lenguaje (" + input + ")";
 
         return isAccept;
+    }
+
+
+    private void fillTree(ArrayList<String> list) {
+        for (String string2 : list) {
+            derivationTree.addSon(axiomaticSymbol, string2);
+        }
     }
 
     public int countVar(String text) {
@@ -88,7 +93,7 @@ public class Grammar {
         }
     }
 
-    public boolean isTerminal(String text) {
+    public boolean haveTerminalSymbol(String text) {
         for (int i = 0; i < text.length(); i++) {
             if (nonTerminalSymbols.contains(text.charAt(i) + "")) {
                 return false;
@@ -98,26 +103,16 @@ public class Grammar {
     }
 
     public NTree<String> treeNArio(String input) {
-        NTree<String> treeNArio = new NTree<>(input, new Comparator<String>() {
-
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
+        NTree<String> treeNArio = new NTree<>(input, String::compareTo);
         NodeTree<String> root = derivationTree.search(input);
+
         while (root != derivationTree.getRoot()) {
             treeNArio.addSon(root.getInfo(), root.getFather().getInfo());
             root = root.getFather();
         }
 
-        NTree<String> auxNArio = new NTree<>(axiomaticSymbol, new Comparator<String>() {
+        NTree<String> auxNArio =new NTree<>(axiomaticSymbol, String::compareTo);
 
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
         NodeTree<String> rootAux = treeNArio.search(axiomaticSymbol);
         while (rootAux != treeNArio.getRoot()) {
             auxNArio.addSon(rootAux.getInfo(), rootAux.getFather().getInfo());
@@ -160,15 +155,15 @@ public class Grammar {
         return false;
     }
 
-    public void addNonTerminalSymbol(String symbol){
+    public void addNonTerminalSymbol(String symbol) {
         nonTerminalSymbols.add(symbol);
     }
 
-    public void addTerminalSymbol(String symbol){
+    public void addTerminalSymbol(String symbol) {
         terminalSymbols.add(symbol);
     }
 
-    public void addProduction(Production production){
+    public void addProduction(Production production) {
         productions.add(production);
     }
 
@@ -180,7 +175,7 @@ public class Grammar {
         return derivationTreeText;
     }
 
-    public void addTerminal(String terminal){
+    public void addTerminal(String terminal) {
         terminalSymbols.add(terminal);
     }
 

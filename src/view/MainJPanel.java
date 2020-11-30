@@ -2,7 +2,7 @@ package view;
 
 import com.kitfox.svg.A;
 import enums.MainActivity;
-import org.apache.tools.ant.Main;
+
 import rojeru_san.RSButtonRiple;
 import rojeru_san.RSMTextFull;
 import utilities.Constants;
