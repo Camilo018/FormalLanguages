@@ -1,191 +1,52 @@
 package dataStructure;
 
-import enums.TreeTraversalOrderEnum;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Comparator;
 
 public class NTree<T> {
 
-    private TreeNode<T> root;
+	protected NodeTree<T> root;
+	protected Comparator<T> comparator;
 
-    public NTree() {
-        super();
-    }
+	public NTree(T info, Comparator<T> comparator) {
+		this.root = new NodeTree<>(info);
+		this.comparator = comparator;
+	}
 
-    public TreeNode<T> getRoot() {
-        return this.root;
-    }
+	public void addSon(T father, T info) {
+		addSon(root, father, info);
+	}
 
-    public void setRoot(TreeNode<T> root) {
-        this.root = root;
-    }
+	private void addSon(NodeTree<T> root, T father, T info) {
+		if (comparator.compare(father, root.info) != 0) {
+			for (NodeTree<T> nodeTree : root.sons) {
+				addSon(nodeTree, father, info);
+			}
+		} else {
+			root.sons.add(new NodeTree<>(root, info));
+		}
+	}
 
-    public int getNumberOfNodes() {
-        int numberOfNodes = 0;
+	public NodeTree<T> search(T info) {
+		return (root != null) ? search(root, info) : null;
+	}
 
-        if(root != null) {
-            numberOfNodes = auxiliaryGetNumberOfNodes(root) + 1; //1 for the root!
-        }
+	private NodeTree<T> search(NodeTree<T> root, T info) {
+		if (comparator.compare(root.info, info) == 0) {
+			return root;
+		} else if (root.sons.isEmpty()) {
+			return null;
+		} else {
+			for (int i = 0; i < root.sons.size(); i++) {
+				NodeTree<T> aux = search(root.sons.get(i), info);
+				if (aux != null) {
+					return aux;
+				}
+			}
+			return null;
+		}
+	}
 
-        return numberOfNodes;
-    }
-
-    private int auxiliaryGetNumberOfNodes(TreeNode<T> node) {
-        int numberOfNodes = node.getNumberOfChildren();
-
-        for(TreeNode<T> child : node.getChildren()) {
-            numberOfNodes += auxiliaryGetNumberOfNodes(child);
-        }
-
-        return numberOfNodes;
-    }
-
-    public boolean exists(T dataToFind) {
-        return (find(dataToFind) != null);
-    }
-
-    public TreeNode<T> find(T dataToFind) {
-        TreeNode<T> returnNode = null;
-
-        if(root != null) {
-            returnNode = auxiliaryFind(root, dataToFind);
-        }
-
-        return returnNode;
-    }
-
-    private TreeNode<T> auxiliaryFind(TreeNode<T> currentNode, T dataToFind) {
-        TreeNode<T> returnNode = null;
-        int i = 0;
-
-        if (currentNode.getData().equals(dataToFind)) {
-            returnNode = currentNode;
-        }
-
-        else if(currentNode.hasChildren()) {
-            i = 0;
-            while(returnNode == null && i < currentNode.getNumberOfChildren()) {
-                returnNode = auxiliaryFind(currentNode.getChildAt(i), dataToFind);
-                i++;
-            }
-        }
-
-        return returnNode;
-    }
-
-    public boolean isEmpty() {
-        return (root == null);
-    }
-
-    public List<TreeNode<T>> build(TreeTraversalOrderEnum traversalOrder) {
-        List<TreeNode<T>> returnList = null;
-
-        if(root != null) {
-            returnList = build(root, traversalOrder);
-        }
-
-        return returnList;
-    }
-
-    public List<TreeNode<T>> build(TreeNode<T> node, TreeTraversalOrderEnum traversalOrder) {
-        List<TreeNode<T>> traversalResult = new ArrayList<TreeNode<T>>();
-
-        if(traversalOrder == TreeTraversalOrderEnum.PRE_ORDER) {
-            buildPreOrder(node, traversalResult);
-        }
-
-        else if(traversalOrder == TreeTraversalOrderEnum.POST_ORDER) {
-            buildPostOrder(node, traversalResult);
-        }
-
-        return traversalResult;
-    }
-
-    private void buildPreOrder(TreeNode<T> node, List<TreeNode<T>> traversalResult) {
-        traversalResult.add(node);
-
-        for(TreeNode<T> child : node.getChildren()) {
-            buildPreOrder(child, traversalResult);
-        }
-    }
-
-    private void buildPostOrder(TreeNode<T> node, List<TreeNode<T>> traversalResult) {
-        for(TreeNode<T> child : node.getChildren()) {
-            buildPostOrder(child, traversalResult);
-        }
-
-        traversalResult.add(node);
-    }
-
-    public Map<TreeNode<T>, Integer> buildWithDepth(TreeTraversalOrderEnum traversalOrder) {
-        Map<TreeNode<T>, Integer> returnMap = null;
-
-        if(root != null) {
-            returnMap = buildWithDepth(root, traversalOrder);
-        }
-
-        return returnMap;
-    }
-
-    public Map<TreeNode<T>, Integer> buildWithDepth(TreeNode<T> node, TreeTraversalOrderEnum traversalOrder) {
-        Map<TreeNode<T>, Integer> traversalResult = new LinkedHashMap<TreeNode<T>, Integer>();
-
-        if(traversalOrder == TreeTraversalOrderEnum.PRE_ORDER) {
-            buildPreOrderWithDepth(node, traversalResult, 0);
-        }
-
-        else if(traversalOrder == TreeTraversalOrderEnum.POST_ORDER) {
-            buildPostOrderWithDepth(node, traversalResult, 0);
-        }
-
-        return traversalResult;
-    }
-
-    private void buildPreOrderWithDepth(TreeNode<T> node, Map<TreeNode<T>, Integer> traversalResult, int depth) {
-        traversalResult.put(node, depth);
-
-        for(TreeNode<T> child : node.getChildren()) {
-            buildPreOrderWithDepth(child, traversalResult, depth + 1);
-        }
-    }
-
-    private void buildPostOrderWithDepth(TreeNode<T> node, Map<TreeNode<T>, Integer> traversalResult, int depth) {
-        for(TreeNode<T> child : node.getChildren()) {
-            buildPostOrderWithDepth(child, traversalResult, depth + 1);
-        }
-
-        traversalResult.put(node, depth);
-    }
-
-    public String toString() {
-        /*
-        We're going to assume a pre-order traversal by default
-         */
-
-        String stringRepresentation = "";
-
-        if(root != null) {
-            stringRepresentation = build(TreeTraversalOrderEnum.PRE_ORDER).toString();
-
-        }
-
-        return stringRepresentation;
-    }
-
-    public String toStringWithDepth() {
-        /*
-        We're going to assume a pre-order traversal by default
-         */
-
-        String stringRepresentation = "";
-
-        if(root != null) {
-            stringRepresentation = buildWithDepth(TreeTraversalOrderEnum.PRE_ORDER).toString();
-        }
-
-        return stringRepresentation;
-    }
+	public NodeTree<T> getRoot() {
+		return root;
+	}
 }

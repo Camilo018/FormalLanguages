@@ -18,12 +18,4 @@ public class Production {
         return production;
     }
 
-
-    public void setNonTerminalSymbol(String nonTerminalSymbol) {
-        this.nonTerminalSymbol = nonTerminalSymbol;
-    }
-
-    public void setProduction(String production) {
-        this.production = production;
-    }
 }
