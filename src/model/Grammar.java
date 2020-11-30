@@ -4,7 +4,6 @@ import dataStructure.NTree;
 import dataStructure.NodeTree;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Grammar {
 
@@ -175,9 +174,6 @@ public class Grammar {
         return derivationTreeText;
     }
 
-    public void addTerminal(String terminal) {
-        terminalSymbols.add(terminal);
-    }
 
     public void setAxiomaticSymbol(String axiomaticSymbol) {
         this.axiomaticSymbol = axiomaticSymbol;
@@ -191,5 +187,8 @@ public class Grammar {
         return nonTerminalSymbols;
     }
 
+    public static Production createProduction(String nonTerminalSymbol, String production){
+        return new Production(nonTerminalSymbol, production);
+    }
 
 }

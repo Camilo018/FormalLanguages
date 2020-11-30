@@ -43,21 +43,18 @@ public class Controller implements ActionListener {
     }
 
     private void addSymbolNotTermianl() {
-        String newSymbol = this.mainView.getSymbolNotTermianl();
+        this.grammar.addNonTerminalSymbol(this.mainView.getSymbolNotTermianl());
     }
 
     private void addSymbolTerminal() {
-        String newSymbol = this.mainView.getSymbolTerminal();
+        this.grammar.addTerminalSymbol(this.mainView.getSymbolTerminal());
     }
 
     private void addProduction() {
-        String headerProduction = this.mainView.getHeaderProduction();
-        String bodyProduction = this.mainView.getBodyProduction();
-
+        this.grammar.addProduction(Grammar.createProduction(this.mainView.getHeaderProduction(), this.mainView.getBodyProduction()));
     }
 
     private void addAxioma() {
-        String axioma = this.mainView.getAxioma();
-
+        this.grammar.setAxiomaticSymbol(this.mainView.getAxioma());
     }
 }
