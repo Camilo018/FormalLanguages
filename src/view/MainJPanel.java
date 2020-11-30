@@ -252,7 +252,7 @@ public class MainJPanel extends JPanel {
     }
 
     public String getAxioma() {
-        return listSymbolsTerminalToAxioma.getItemAt(1);
+        return listSymbolsTerminalToAxioma.getSelectedItem().toString();
     }
 
     public void addListSymbolsNotTerminal(ArrayList<String> nonTerminalSymbols) {
@@ -274,8 +274,12 @@ public class MainJPanel extends JPanel {
     }
 
     public void addListProduction(ArrayList<Production> productions) {
-
-    }
+        showProductions.removeAllItems();
+        for (Production symbol: productions) {
+            showProductions.addItem(symbol.getNonTerminalSymbol() + " --> " + symbol.getProduction());
+        }
+        showProductions.repaint();
+        this.repaint();    }
 
     public void addListAxioma(String axiomaticSymbol) {
         showAxioma.removeAllItems();

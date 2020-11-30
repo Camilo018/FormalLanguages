@@ -69,6 +69,7 @@ public class Controller implements ActionListener {
     }
 
     private void addAxioma() {
+        System.out.println("´HOLA " +this.mainView.getAxioma());
         this.grammar.setAxiomaticSymbol(this.mainView.getAxioma());
         System.out.println(this.grammar.getAxiomaticSymbol());
         this.mainView.addListAxioma(this.grammar.getAxiomaticSymbol());
