@@ -35,16 +35,23 @@ public class MainView extends JFrame {
         this.add(this.mainJPanel, BorderLayout.CENTER);
     }
 
-
-    public void addSymbolNotTermianl() {
+    public String getSymbolNotTermianl() {
+        return "";
     }
 
-    public void addSymbolTerminal() {
+    public String getSymbolTerminal() {
+        return "";
     }
 
-    public void addProduction() {
+    public String getHeaderProduction() {
+        return "";
     }
 
-    public void addAxioma() {
+    public String getBodyProduction() {
+        return "";
+    }
+
+    public String getAxioma() {
+        return "";
     }
 }
