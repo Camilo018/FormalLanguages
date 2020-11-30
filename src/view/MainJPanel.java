@@ -9,6 +9,7 @@ import utilities.Constants;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainJPanel extends JPanel {
 
@@ -54,10 +55,6 @@ public class MainJPanel extends JPanel {
     private JComboBox<String> listSymbolsTerminalToAxioma() {
         JComboBox<String> listSymbolsTerminalToAxioma = new JComboBox<>();
         listSymbolsTerminalToAxioma.setFont(Constants.ralewayFont);
-        listSymbolsTerminalToAxioma.addItem("Hola");
-        listSymbolsTerminalToAxioma.addItem("Esto ES");
-        listSymbolsTerminalToAxioma.addItem("Una prueba");
-
         return listSymbolsTerminalToAxioma;
     }
 
@@ -213,6 +210,15 @@ public class MainJPanel extends JPanel {
 
     public String getSymbolNotTermianl() {
         return fieldSymbolsNotTerminal.getText();
+    }
+
+    public void setListSymbolsTerminalToAxioma(ArrayList<String> symbolsTerminal){
+        listSymbolsTerminalToAxioma.removeAllItems();
+        for (String symbol: symbolsTerminal) {
+            listSymbolsTerminalToAxioma.addItem(symbol);
+        }
+        listSymbolsTerminalToAxioma.repaint();
+        this.repaint();
     }
 
     public String getSymbolTerminal() {

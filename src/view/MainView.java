@@ -5,6 +5,7 @@ import utilities.Constants;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainView extends JFrame {
 
@@ -53,5 +54,9 @@ public class MainView extends JFrame {
 
     public String getAxioma() {
         return mainJPanel.getAxioma();
+    }
+
+    public void setListSymbolsTerminalToAxioma(ArrayList<String> symbolsTerminal){
+        mainJPanel.setListSymbolsTerminalToAxioma(symbolsTerminal);
     }
 }
