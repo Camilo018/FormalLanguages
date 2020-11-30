@@ -19,7 +19,7 @@ public class MainView extends JFrame {
     }
 
     private void mainJPanelInstances(ActionListener actionListener) {
-        this.mainJPanel = new MainJPanel();
+        this.mainJPanel = new MainJPanel(actionListener);
     }
 
     private void mainJPanelFeatures() {
@@ -27,6 +27,8 @@ public class MainView extends JFrame {
         this.setTitle(Constants.TITLE_APP);
         this.setMinimumSize(new Dimension(Constants.MINIMUM_WIDTH, Constants.MINIMUM_HEIGHT));
         this.setIconImage(new ImageIcon(getClass().getResource(Constants.ICON_APP)).getImage());
+        this.setFont(Constants.ralewayFont);
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     private void mainJPanelInternalContent() {
