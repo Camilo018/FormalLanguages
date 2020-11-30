@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class MainView extends JFrame {
 
+
     private MainJPanel mainJPanel;
 
     public MainView(ActionListener actionListener) throws HeadlessException, InterruptedException {
@@ -87,5 +88,25 @@ public class MainView extends JFrame {
 
     public void showValidateWord(String derivationTreeText) {
         this.mainJPanel.showValidateWord(derivationTreeText);
+    }
+
+    public boolean getContentSymbolsNotTerminal (ArrayList<String> listSimbolsNotTerminal){
+        return this.mainJPanel.getContentSymbolsNotTerminal(listSimbolsNotTerminal);
+    }
+
+    public void showAdvertenceDialog() {
+        JOptionPane.showMessageDialog(this, "¡Debe ingresar un valor valido!", "¡Error!", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public boolean getContentSymbolsTerminal(ArrayList<String> terminalSymbols) {
+        return this.mainJPanel.getContentSymbolsTerminal(terminalSymbols);
+    }
+
+    public boolean getContentProduction(ArrayList<Production> productions, ArrayList<String> nonTerminalSymbols) {
+        return this.mainJPanel.getContentProduction(productions, nonTerminalSymbols);
+    }
+
+    public boolean getContentAxioma() {
+        return this.mainJPanel.getContentAxioma();
     }
 }

@@ -57,6 +57,7 @@ public class Grammar {
 
                 }
             }
+          //  flag = true;
             list = aux;
         }
         if (isAccept)
@@ -176,6 +177,9 @@ public class Grammar {
         return derivationTreeText;
     }
 
+    public void setDerivationTreeText(String derivationTreeText) {
+        this.derivationTreeText = derivationTreeText;
+    }
 
     public void setAxiomaticSymbol(String axiomaticSymbol) {
         this.axiomaticSymbol = axiomaticSymbol;

@@ -33,8 +33,6 @@ public class MainJPanel extends JPanel {
     private JLabel derivateWordTree;
 
 
-
-
     public MainJPanel(ActionListener actionListener) {
         this.mainJPanelInstances(actionListener);
         this.mainJPanelFeatures();
@@ -45,6 +43,7 @@ public class MainJPanel extends JPanel {
         this.backGroundImage();
         this.derivateWordTree = new JLabel();
         this.rsmTextFull = Constants.rsmTextFull("Ingrese la palabra que desea validar");
+
         this.showSymbolsTerminals = Constants.comboBoxDefault();
         this.showSymbolsNotTerminals = Constants.comboBoxDefault();
         this.showAxioma = Constants.comboBoxDefault();
@@ -59,7 +58,6 @@ public class MainJPanel extends JPanel {
         this.leftPanel = this.leftPanelFeatures();
         this.rightPanelInformation = this.rightPanelInformationFeatures(actionListener);
     }
-
 
 
     private RSMTextFull headerProduction() {
@@ -87,7 +85,7 @@ public class MainJPanel extends JPanel {
 
     private JPanel rightPanelInformationFeatures(ActionListener actionListener) {
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new GridLayout(3,1));
+        rightPanel.setLayout(new GridLayout(3, 1));
         createPanelsAndAddContent(rightPanel, actionListener);
         return rightPanel;
     }
@@ -111,7 +109,7 @@ public class MainJPanel extends JPanel {
     private void acceptInfoPanelFeaturesAndContent(JPanel acceptInfoPanel, ActionListener actionListener) {
         acceptInfoPanel.setBackground(Color.decode("#34495e"));
         RSButtonRiple acceptInfo = Constants.btnRipleTwo("¡Aceptar!", MainActivity.ACCEPT_INFO.toString(), actionListener, "#2ecc71");
-        acceptInfoPanel.setLayout(new GridLayout(2,1));
+        acceptInfoPanel.setLayout(new GridLayout(2, 1));
         JLabel infoPersons = new JLabel();
         infoPersons.setFont(Constants.ralewayFont);
         infoPersons.setText(Constants.PERSONS_PROJECT);
@@ -120,17 +118,17 @@ public class MainJPanel extends JPanel {
     }
 
     private void showInfoPanelFeaturesAndContent(JPanel showInfoPanel) {
-        showInfoPanel.setLayout(new GridLayout(4 ,1));
-        showInfoPanel.add(Constants.insidePanel(showSymbolsNotTerminals, 10, 30 , 10,30,"#0000", false));
-        showInfoPanel.add(Constants.insidePanel(showSymbolsTerminals, 10, 30 , 10,30,"#0000", false));
-        showInfoPanel.add(Constants.insidePanel(showAxioma, 10, 30 , 10,30,"#0000", false));
-        showInfoPanel.add(Constants.insidePanel(showProductions, 10, 30 , 10,30,"#0000", false));
+        showInfoPanel.setLayout(new GridLayout(4, 1));
+        showInfoPanel.add(Constants.insidePanel(showSymbolsNotTerminals, 10, 30, 10, 30, "#0000", false));
+        showInfoPanel.add(Constants.insidePanel(showSymbolsTerminals, 10, 30, 10, 30, "#0000", false));
+        showInfoPanel.add(Constants.insidePanel(showAxioma, 10, 30, 10, 30, "#0000", false));
+        showInfoPanel.add(Constants.insidePanel(showProductions, 10, 30, 10, 30, "#0000", false));
 
         showInfoPanel.setBackground(Color.decode("#2c3e50"));
     }
 
     private void getInfoPanelFeaturesAndContent(JPanel getInfoPanel, ActionListener actionListener) {
-        getInfoPanel.setLayout(new GridLayout(4,1));
+        getInfoPanel.setLayout(new GridLayout(4, 1));
         getInfoPanel.setBackground(Color.decode("#34495e"));
         getInfoInternalsPanels(getInfoPanel, actionListener);
     }
@@ -155,36 +153,38 @@ public class MainJPanel extends JPanel {
     }
 
     private JPanel symbolsNotTerminalGetInfo(ActionListener actionListener) {
-        JPanel symbolsNotTerminalGetInfo = new JPanel(new GridLayout(1,3));
+        JPanel symbolsNotTerminalGetInfo = new JPanel(new GridLayout(1, 3));
         symbolsNotTerminalGetInfo.setOpaque(false);
         RSButtonRiple addSymbolNotTerminal = Constants.btnRiple("", MainActivity.ADD_SYMBOL_NOT_TERMINAL.toString(), actionListener, "#3498db", Constants.ICON_ADD);
-        symbolsNotTerminalGetInfo.add(Constants.getSpace(0,0,0,0));
-        symbolsNotTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsNotTerminal, 15,10,15,10,"#000000", false));
-        symbolsNotTerminalGetInfo.add(Constants.insidePanel(addSymbolNotTerminal, 15,10,15,220,"#000000", false));
+
+
+        symbolsNotTerminalGetInfo.add(Constants.getSpace(0, 0, 0, 0));
+        symbolsNotTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsNotTerminal, 15, 10, 15, 10, "#000000", false));
+        symbolsNotTerminalGetInfo.add(Constants.insidePanel(addSymbolNotTerminal, 15, 10, 15, 220, "#000000", false));
         return symbolsNotTerminalGetInfo;
     }
 
     private JPanel symbolsTerminalGetInfo(ActionListener actionListener) {
-        JPanel symbolsTerminalGetInfo = new JPanel(new GridLayout(1,3));
+        JPanel symbolsTerminalGetInfo = new JPanel(new GridLayout(1, 3));
         symbolsTerminalGetInfo.setOpaque(false);
 
         RSButtonRiple addSymbolTerminal = Constants.btnRiple("", MainActivity.ADD_SYMBOL_TERMINAL.toString(), actionListener, "#3498db", Constants.ICON_ADD);
 
-        symbolsTerminalGetInfo.add(Constants.getSpace(0,0,0,0));
-        symbolsTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsTerminal, 15,10,15,10,"#000000", false));
-        symbolsTerminalGetInfo.add(Constants.insidePanel(addSymbolTerminal, 15,10,15,220,"#000000", false));
+        symbolsTerminalGetInfo.add(Constants.getSpace(0, 0, 0, 0));
+        symbolsTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsTerminal, 15, 10, 15, 10, "#000000", false));
+        symbolsTerminalGetInfo.add(Constants.insidePanel(addSymbolTerminal, 15, 10, 15, 220, "#000000", false));
         return symbolsTerminalGetInfo;
     }
 
     private JPanel symbolAxiomalGetInfo(ActionListener actionListener) {
-        JPanel symbolAxiomalGetInfo = new JPanel(new GridLayout(1,3));
+        JPanel symbolAxiomalGetInfo = new JPanel(new GridLayout(1, 3));
         symbolAxiomalGetInfo.setOpaque(false);
 
         RSButtonRiple addSymbolAxioma = Constants.btnRiple("", MainActivity.ADD_AXIOMA.toString(), actionListener, "#3498db", Constants.ICON_ADD);
 
-        symbolAxiomalGetInfo.add(Constants.getSpace(0,0,0,0));
-        symbolAxiomalGetInfo.add(Constants.insidePanel(listSymbolsTerminalToAxioma, 15,10,15,10,"#000000", false));
-        symbolAxiomalGetInfo.add(Constants.insidePanel(addSymbolAxioma, 15,10,15,220,"#000000", false));
+        symbolAxiomalGetInfo.add(Constants.getSpace(0, 0, 0, 0));
+        symbolAxiomalGetInfo.add(Constants.insidePanel(listSymbolsTerminalToAxioma, 15, 10, 15, 10, "#000000", false));
+        symbolAxiomalGetInfo.add(Constants.insidePanel(addSymbolAxioma, 15, 10, 15, 220, "#000000", false));
         return symbolAxiomalGetInfo;
     }
 
@@ -195,9 +195,9 @@ public class MainJPanel extends JPanel {
 
         RSButtonRiple addProduction = Constants.btnRiple("", MainActivity.ADD_PRODUCTION.toString(), actionListener, "#00000", Constants.ICON_ADD);
 
-        productionsGetInfo.add(Constants.insidePanel(headerProduction, 15,10,15,10,"#000000", false));
-        productionsGetInfo.add(Constants.insidePanel(bodyProduction, 15,10,15,10,"#000000", false));
-        productionsGetInfo.add(Constants.insidePanel(addProduction, 15,10,15,220,"#000000", false));
+        productionsGetInfo.add(Constants.insidePanel(headerProduction, 15, 10, 15, 10, "#000000", false));
+        productionsGetInfo.add(Constants.insidePanel(bodyProduction, 15, 10, 15, 10, "#000000", false));
+        productionsGetInfo.add(Constants.insidePanel(addProduction, 15, 10, 15, 220, "#000000", false));
         return productionsGetInfo;
     }
 
@@ -239,9 +239,9 @@ public class MainJPanel extends JPanel {
         return fieldSymbolsNotTerminal.getText();
     }
 
-    public void setListSymbolsNotTerminalToAxioma(ArrayList<String> symbolsTerminal){
+    public void setListSymbolsNotTerminalToAxioma(ArrayList<String> symbolsTerminal) {
         listSymbolsTerminalToAxioma.removeAllItems();
-        for (String symbol: symbolsTerminal) {
+        for (String symbol : symbolsTerminal) {
             listSymbolsTerminalToAxioma.addItem(symbol);
         }
         listSymbolsTerminalToAxioma.repaint();
@@ -266,8 +266,9 @@ public class MainJPanel extends JPanel {
     }
 
     public void addListSymbolsNotTerminal(ArrayList<String> nonTerminalSymbols) {
+        showSymbolsNotTerminals.setVisible(true);
         showSymbolsNotTerminals.removeAllItems();
-        for (String symbol: nonTerminalSymbols) {
+        for (String symbol : nonTerminalSymbols) {
             showSymbolsNotTerminals.addItem(symbol);
         }
         showSymbolsNotTerminals.repaint();
@@ -275,8 +276,9 @@ public class MainJPanel extends JPanel {
     }
 
     public void addListSymbolsTerminal(ArrayList<String> terminalSymbols) {
+        showSymbolsTerminals.setVisible(true);
         showSymbolsTerminals.removeAllItems();
-        for (String symbol: terminalSymbols) {
+        for (String symbol : terminalSymbols) {
             showSymbolsTerminals.addItem(symbol);
         }
         showSymbolsTerminals.repaint();
@@ -284,29 +286,31 @@ public class MainJPanel extends JPanel {
     }
 
     public void addListProduction(ArrayList<Production> productions) {
+        showProductions.setVisible(true);
         showProductions.removeAllItems();
-        for (Production symbol: productions) {
+        for (Production symbol : productions) {
             showProductions.addItem(symbol.getNonTerminalSymbol() + " --> " + symbol.getProduction());
         }
         showProductions.repaint();
-        this.repaint();    }
+        this.repaint();
+    }
 
     public void addListAxioma(String axiomaticSymbol) {
+        showAxioma.setVisible(true);
         showAxioma.removeAllItems();
         showAxioma.addItem(axiomaticSymbol);
-        System.out.println("EL AXIOMA ES" + axiomaticSymbol);
+        listSymbolsTerminalToAxioma.setEnabled(false);
         this.repaint();
     }
 
     public void acceptInfo(ActionListener actionListener) {
         RSButtonRiple validateBtn = Constants.btnRipleTwo("Validar", MainActivity.VALIDATE_WORD.toString(), actionListener, "#2ecc71");
-        JPanel validateWordPanel = new JPanel(new GridLayout(1,2));
+        JPanel validateWordPanel = new JPanel(new GridLayout(1, 2));
         validateWordPanel.setOpaque(false);
-        validateWordPanel.add(Constants.insidePanel(rsmTextFull, 0, 50,0,50, "#0000", false));
-        validateWordPanel.add(Constants.insidePanel(validateBtn, 0, 50,0,50, "#0000", false));
-        leftPanel.add(Constants.insidePanel(validateWordPanel, 50, 50,10,50, "#0000", false), BorderLayout.PAGE_START);
-        this.leftPanel.add(Constants.insidePanel(derivateWordTree, 50, 50,10,50, "#0000", false), BorderLayout.CENTER);
-
+        validateWordPanel.add(Constants.insidePanel(rsmTextFull, 0, 50, 0, 50, "#0000", false));
+        validateWordPanel.add(Constants.insidePanel(validateBtn, 0, 50, 0, 50, "#0000", false));
+        leftPanel.add(Constants.insidePanel(validateWordPanel, 50, 50, 10, 50, "#0000", false), BorderLayout.PAGE_START);
+        this.leftPanel.add(Constants.insidePanel(derivateWordTree, 50, 50, 10, 50, "#0000", false), BorderLayout.CENTER);
         this.leftPanel.repaint();
         this.repaint();
         this.revalidate();
@@ -323,9 +327,63 @@ public class MainJPanel extends JPanel {
         this.derivateWordTree.setVerticalAlignment(JLabel.TOP);
         this.derivateWordTree.setHorizontalTextPosition(JLabel.CENTER);
         this.derivateWordTree.setVerticalTextPosition(JLabel.TOP);
-
         this.leftPanel.repaint();
         this.repaint();
         this.revalidate();
+    }
+
+    public boolean getContentSymbolsNotTerminal(ArrayList<String> listSymbolsNotTerminal) {
+        if (this.fieldSymbolsNotTerminal.getText().length() == 0) {
+            return true;
+        } else if (this.fieldSymbolsNotTerminal.getText().length() > 0) {
+            for (String item : listSymbolsNotTerminal) {
+                if (item.equals(fieldSymbolsNotTerminal.getText())) {
+                    return true;
+                }
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean getContentSymbolsTerminal(ArrayList<String> terminalSymbols) {
+        if (this.fieldSymbolsTerminal.getText().length() == 0) {
+            return true;
+        } else if (this.fieldSymbolsTerminal.getText().length() > 0) {
+            for (String item : terminalSymbols) {
+                if (item.equals(fieldSymbolsTerminal.getText())) {
+                    return true;
+                }
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean getContentProduction(ArrayList<Production> productions, ArrayList<String> nonTerminalSymbols) {
+        if (this.headerProduction.getText().length() == 0 && this.bodyProduction.getText().length() == 0) {
+            return true;
+        } if (this.headerProduction.getText().length() > 0 && this.bodyProduction.getText().length() > 0 ) {
+            for (Production item : productions) {
+                if (item.getProduction().equals(bodyProduction.getText()) && item.getNonTerminalSymbol().equals(headerProduction.getText()) ) {
+                    return true;
+                }
+            }
+        } if(!nonTerminalSymbols.contains(headerProduction.getText().toString())){
+            System.out.println(headerProduction.getText().toString());
+            return  true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean getContentAxioma() {
+        if (listSymbolsTerminalToAxioma.getItemCount() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

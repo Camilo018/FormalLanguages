@@ -107,8 +107,9 @@ public class Constants {
         JComboBox<String> jComboBox = new JComboBox<>();
         jComboBox.setFont(Constants.ralewayFont);
         jComboBox.setForeground(Color.white);
-
+        jComboBox.setVisible(false);
 
         return  jComboBox;
     }
+
 }
