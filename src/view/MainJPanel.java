@@ -2,6 +2,7 @@ package view;
 
 import enums.MainActivity;
 
+import model.Production;
 import rojeru_san.RSButtonRiple;
 import rojeru_san.RSMTextFull;
 import utilities.Constants;
@@ -18,10 +19,16 @@ public class MainJPanel extends JPanel {
     private JPanel rightPanelInformation;
     private RSMTextFull fieldSymbolsNotTerminal;
     private RSMTextFull fieldSymbolsTerminal;
+    private JPanel showInfoPanel;
     private RSMTextFull headerProduction;
     private RSMTextFull bodyProduction;
 
     private JComboBox<String> listSymbolsTerminalToAxioma;
+
+    private JComboBox<String> showSymbolsTerminals;
+    private JComboBox<String> showSymbolsNotTerminals;
+    private JComboBox<String> showAxioma;
+    private  JComboBox<String> showProductions;
 
 
     public MainJPanel(ActionListener actionListener) {
@@ -32,15 +39,19 @@ public class MainJPanel extends JPanel {
 
     private void mainJPanelInstances(ActionListener actionListener) {
         this.backGroundImage();
+        this.showSymbolsTerminals = new JComboBox<>();
+        this.showSymbolsNotTerminals = new JComboBox<>();
+        this.showAxioma = new JComboBox<>();
+        this.showProductions = new JComboBox<>();
+
+        this.showInfoPanel = new JPanel();
         this.fieldSymbolsNotTerminal = this.fieldSymbolsNotTerminal();
         this.fieldSymbolsTerminal = this.fieldSymbolsTerminal();
         this.headerProduction = this.headerProduction();
         this.bodyProduction = this.bodyProduction();
-
         this.listSymbolsTerminalToAxioma = this.listSymbolsTerminalToAxioma();
         this.leftPanel = this.leftPanelFeatures();
         this.rightPanelInformation = this.rightPanelInformationFeatures(actionListener);
-
     }
 
     private RSMTextFull headerProduction() {
@@ -75,7 +86,7 @@ public class MainJPanel extends JPanel {
 
     private void createPanelsAndAddContent(JPanel rightPanel, ActionListener actionListener) {
         JPanel getInfoPanel = new JPanel();
-        JPanel showInfoPanel = new JPanel();
+
         JPanel acceptInfoPanel = new JPanel();
         acceptInfoPanel.setOpaque(false);
         rightPanel.setOpaque(false);
@@ -101,6 +112,12 @@ public class MainJPanel extends JPanel {
     }
 
     private void showInfoPanelFeaturesAndContent(JPanel showInfoPanel) {
+        showInfoPanel.setLayout(new GridLayout(4 ,1));
+        showInfoPanel.add(Constants.insidePanel(showSymbolsNotTerminals, 10, 30 , 10,30,"#0000", false));
+        showInfoPanel.add(Constants.insidePanel(showSymbolsTerminals, 10, 30 , 10,30,"#0000", false));
+        showInfoPanel.add(Constants.insidePanel(showAxioma, 10, 30 , 10,30,"#0000", false));
+        showInfoPanel.add(Constants.insidePanel(showProductions, 10, 30 , 10,30,"#0000", false));
+
         showInfoPanel.setBackground(Color.decode("#2c3e50"));
     }
 
@@ -212,7 +229,7 @@ public class MainJPanel extends JPanel {
         return fieldSymbolsNotTerminal.getText();
     }
 
-    public void setListSymbolsTerminalToAxioma(ArrayList<String> symbolsTerminal){
+    public void setListSymbolsNotTerminalToAxioma(ArrayList<String> symbolsTerminal){
         listSymbolsTerminalToAxioma.removeAllItems();
         for (String symbol: symbolsTerminal) {
             listSymbolsTerminalToAxioma.addItem(symbol);
@@ -220,6 +237,7 @@ public class MainJPanel extends JPanel {
         listSymbolsTerminalToAxioma.repaint();
         this.repaint();
     }
+
 
     public String getSymbolTerminal() {
         return fieldSymbolsTerminal.getText();
@@ -235,5 +253,34 @@ public class MainJPanel extends JPanel {
 
     public String getAxioma() {
         return listSymbolsTerminalToAxioma.getItemAt(1);
+    }
+
+    public void addListSymbolsNotTerminal(ArrayList<String> nonTerminalSymbols) {
+        showSymbolsNotTerminals.removeAllItems();
+        for (String symbol: nonTerminalSymbols) {
+            showSymbolsNotTerminals.addItem(symbol);
+        }
+        showSymbolsNotTerminals.repaint();
+        this.repaint();
+    }
+
+    public void addListSymbolsTerminal(ArrayList<String> terminalSymbols) {
+        showSymbolsTerminals.removeAllItems();
+        for (String symbol: terminalSymbols) {
+            showSymbolsTerminals.addItem(symbol);
+        }
+        showSymbolsTerminals.repaint();
+        this.repaint();
+    }
+
+    public void addListProduction(ArrayList<Production> productions) {
+
+    }
+
+    public void addListAxioma(String axiomaticSymbol) {
+        showAxioma.removeAllItems();
+        showAxioma.addItem(axiomaticSymbol);
+        System.out.println("EL AXIOMA ES" + axiomaticSymbol);
+        this.repaint();
     }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import model.Production;
 import utilities.Constants;
 
 import javax.swing.*;
@@ -56,7 +57,23 @@ public class MainView extends JFrame {
         return mainJPanel.getAxioma();
     }
 
-    public void setListSymbolsTerminalToAxioma(ArrayList<String> symbolsTerminal){
-        mainJPanel.setListSymbolsTerminalToAxioma(symbolsTerminal);
+    public void setListSymbolsNotTerminalToAxioma(ArrayList<String> symbolsTerminal){
+        mainJPanel.setListSymbolsNotTerminalToAxioma(symbolsTerminal);
+    }
+
+    public void addListSymbolsNotTerminal(ArrayList<String> nonTerminalSymbols) {
+        mainJPanel.addListSymbolsNotTerminal(nonTerminalSymbols);
+    }
+
+    public void addListSymbolsTerminal(ArrayList<String> terminalSymbols) {
+        mainJPanel.addListSymbolsTerminal(terminalSymbols);
+    }
+
+    public void addListProduction(ArrayList<Production> productions) {
+        this.mainJPanel.addListProduction(productions);
+    }
+
+    public void addListAxioma(String axiomaticSymbol) {
+        this.mainJPanel.addListAxioma(axiomaticSymbol);
     }
 }

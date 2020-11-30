@@ -14,6 +14,8 @@ public class Grammar {
     private NTree<String> derivationTree;
     private String derivationTreeText;
 
+
+
     public Grammar() {
         this.nonTerminalSymbols = new ArrayList<>();
         this.terminalSymbols = new ArrayList<>();
@@ -189,6 +191,10 @@ public class Grammar {
 
     public static Production createProduction(String nonTerminalSymbol, String production){
         return new Production(nonTerminalSymbol, production);
+    }
+
+    public String getAxiomaticSymbol() {
+        return axiomaticSymbol;
     }
 
 }

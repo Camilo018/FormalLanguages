@@ -46,7 +46,8 @@ public class Controller implements ActionListener {
 
     private void addSymbolNotTermianl() {
         this.grammar.addNonTerminalSymbol(this.mainView.getSymbolNotTermianl());
-        this.mainView.setListSymbolsTerminalToAxioma(this.grammar.getNonTerminalSymbols());
+        this.mainView.setListSymbolsNotTerminalToAxioma(this.grammar.getNonTerminalSymbols());
+        this.mainView.addListSymbolsNotTerminal(this.grammar.getNonTerminalSymbols());
     }
 
     private void addSymbolTerminal() {
@@ -54,6 +55,8 @@ public class Controller implements ActionListener {
         for (String a: grammar.getTerminalSymbols()) {
             System.out.println(a);
         }
+        this.mainView.addListSymbolsTerminal(this.grammar.getTerminalSymbols());
+
     }
 
     private void addProduction() {
@@ -61,10 +64,14 @@ public class Controller implements ActionListener {
         for (Production a: grammar.getProductions()) {
             System.out.println(a.getNonTerminalSymbol() + "----" + a.getProduction());
         }
+        this.mainView.addListProduction(this.grammar.getProductions());
+
     }
 
     private void addAxioma() {
         this.grammar.setAxiomaticSymbol(this.mainView.getAxioma());
+        System.out.println(this.grammar.getAxiomaticSymbol());
+        this.mainView.addListAxioma(this.grammar.getAxiomaticSymbol());
 
     }
 }
