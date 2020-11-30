@@ -1,8 +1,6 @@
 package view;
 
-import com.kitfox.svg.A;
 import enums.MainActivity;
-import org.apache.tools.ant.Main;
 import rojeru_san.RSButtonRiple;
 import rojeru_san.RSMTextFull;
 import utilities.Constants;
@@ -63,11 +61,11 @@ public class MainJPanel extends JPanel {
     }
 
     private RSMTextFull fieldSymbolsTerminal() {
-        return Constants.rsmTextFull("Agregue un simbolo terminal");
+        return Constants.rsmTextFull("Agregar un simbolo terminal");
     }
 
     private RSMTextFull fieldSymbolsNotTerminal() {
-        return Constants.rsmTextFull("Agregue un simbolo NO terminal");
+        return Constants.rsmTextFull("Agregar un simbolo NO terminal");
     }
 
     private JPanel rightPanelInformationFeatures(ActionListener actionListener) {
@@ -81,6 +79,10 @@ public class MainJPanel extends JPanel {
         JPanel getInfoPanel = new JPanel();
         JPanel showInfoPanel = new JPanel();
         JPanel acceptInfoPanel = new JPanel();
+        acceptInfoPanel.setOpaque(false);
+        rightPanel.setOpaque(false);
+        showInfoPanel.setOpaque(false);
+        getInfoPanel.setOpaque(false);
         this.getInfoPanelFeaturesAndContent(getInfoPanel, actionListener);
         this.showInfoPanelFeaturesAndContent(showInfoPanel);
         this.acceptInfoPanelFeaturesAndContent(acceptInfoPanel, actionListener);
@@ -91,7 +93,7 @@ public class MainJPanel extends JPanel {
 
     private void acceptInfoPanelFeaturesAndContent(JPanel acceptInfoPanel, ActionListener actionListener) {
         acceptInfoPanel.setBackground(Color.decode("#34495e"));
-        RSButtonRiple acceptInfo = Constants.btnRiple("¡Aceptar!", MainActivity.ACCEPT_INFO.toString(), actionListener, "#2ecc71", "" );
+        RSButtonRiple acceptInfo = Constants.btnRipleTwo("¡Aceptar!", MainActivity.ACCEPT_INFO.toString(), actionListener, "#2ecc71");
         acceptInfoPanel.setLayout(new GridLayout(2,1));
         JLabel infoPersons = new JLabel();
         infoPersons.setFont(Constants.ralewayFont);
@@ -123,49 +125,56 @@ public class MainJPanel extends JPanel {
     }
 
     private void setOpaquePanels(JPanel symbolsNotTerminalGetInfo, JPanel symbolsTerminalGetInfo, JPanel symbolAxiomalGetInfo, JPanel productionsGetInfo) {
-        symbolsTerminalGetInfo.setBackground(Color.decode("#34495e"));
-        symbolAxiomalGetInfo.setBackground(Color.decode("#34495e"));
-        productionsGetInfo.setBackground(Color.decode("#34495e"));
-        symbolsNotTerminalGetInfo.setBackground(Color.decode("#34495e"));
+        symbolsTerminalGetInfo.setOpaque(false);
+        symbolAxiomalGetInfo.setOpaque(false);
+        productionsGetInfo.setOpaque(false);
+        symbolsNotTerminalGetInfo.setOpaque(false);
     }
 
     private JPanel symbolsNotTerminalGetInfo(ActionListener actionListener) {
         JPanel symbolsNotTerminalGetInfo = new JPanel(new GridLayout(1,3));
+        symbolsNotTerminalGetInfo.setOpaque(false);
         RSButtonRiple addSymbolNotTerminal = Constants.btnRiple("", MainActivity.ADD_SYMBOL_NOT_TERMINAL.toString(), actionListener, "#3498db", Constants.ICON_ADD);
         symbolsNotTerminalGetInfo.add(Constants.getSpace(0,0,0,0));
-        symbolsNotTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsNotTerminal, 8,13,8,10,"#000000", false));
-        symbolsNotTerminalGetInfo.add(Constants.insidePanel(addSymbolNotTerminal, 8,70,8,70,"#000000", false));
+        symbolsNotTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsNotTerminal, 15,10,15,10,"#000000", false));
+        symbolsNotTerminalGetInfo.add(Constants.insidePanel(addSymbolNotTerminal, 15,10,15,220,"#000000", false));
         return symbolsNotTerminalGetInfo;
     }
 
     private JPanel symbolsTerminalGetInfo(ActionListener actionListener) {
         JPanel symbolsTerminalGetInfo = new JPanel(new GridLayout(1,3));
-        RSButtonRiple addSymbolTerminal = Constants.btnRiple("", MainActivity.ADD_SIMBOL_TERMINAL.toString(), actionListener, "#3498db", Constants.ICON_ADD);
+        symbolsTerminalGetInfo.setOpaque(false);
+
+        RSButtonRiple addSymbolTerminal = Constants.btnRiple("", MainActivity.ADD_SYMBOL_TERMINAL.toString(), actionListener, "#3498db", Constants.ICON_ADD);
 
         symbolsTerminalGetInfo.add(Constants.getSpace(0,0,0,0));
-        symbolsTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsTerminal, 8,10,8,10,"#000000", false));
-        symbolsTerminalGetInfo.add(Constants.insidePanel(addSymbolTerminal, 8,70,8,70,"#000000", false));
+        symbolsTerminalGetInfo.add(Constants.insidePanel(fieldSymbolsTerminal, 15,10,15,10,"#000000", false));
+        symbolsTerminalGetInfo.add(Constants.insidePanel(addSymbolTerminal, 15,10,15,220,"#000000", false));
         return symbolsTerminalGetInfo;
     }
 
     private JPanel symbolAxiomalGetInfo(ActionListener actionListener) {
         JPanel symbolAxiomalGetInfo = new JPanel(new GridLayout(1,3));
+        symbolAxiomalGetInfo.setOpaque(false);
+
         RSButtonRiple addSymbolAxioma = Constants.btnRiple("", MainActivity.ADD_AXIOMA.toString(), actionListener, "#3498db", Constants.ICON_ADD);
 
         symbolAxiomalGetInfo.add(Constants.getSpace(0,0,0,0));
-        symbolAxiomalGetInfo.add(Constants.insidePanel(listSymbolsTerminalToAxioma, 8,10,8,10,"#000000", false));
-        symbolAxiomalGetInfo.add(Constants.insidePanel(addSymbolAxioma, 8,70,8,70,"#000000", false));
+        symbolAxiomalGetInfo.add(Constants.insidePanel(listSymbolsTerminalToAxioma, 15,10,15,10,"#000000", false));
+        symbolAxiomalGetInfo.add(Constants.insidePanel(addSymbolAxioma, 15,10,15,220,"#000000", false));
         return symbolAxiomalGetInfo;
     }
 
 
     private JPanel productionsGetInfo(ActionListener actionListener) {
         JPanel productionsGetInfo = new JPanel(new GridLayout(1, 3));
-        RSButtonRiple addProduction = Constants.btnRiple("", MainActivity.ADD_PRODUCTION.toString(), actionListener, "#3498db", Constants.ICON_ADD);
+        productionsGetInfo.setOpaque(false);
 
-        productionsGetInfo.add(Constants.insidePanel(headerProduction, 8,10,8,10,"#000000", false));
-        productionsGetInfo.add(Constants.insidePanel(bodyProduction, 8,10,8,10,"#000000", false));
-        productionsGetInfo.add(Constants.insidePanel(addProduction, 8,70,8,70,"#000000", false));
+        RSButtonRiple addProduction = Constants.btnRiple("", MainActivity.ADD_PRODUCTION.toString(), actionListener, "#00000", Constants.ICON_ADD);
+
+        productionsGetInfo.add(Constants.insidePanel(headerProduction, 15,10,15,10,"#000000", false));
+        productionsGetInfo.add(Constants.insidePanel(bodyProduction, 15,10,15,10,"#000000", false));
+        productionsGetInfo.add(Constants.insidePanel(addProduction, 15,10,15,220,"#000000", false));
         return productionsGetInfo;
     }
 

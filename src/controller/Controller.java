@@ -20,9 +20,42 @@ public class Controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        switch (MainActivity.valueOf(e.getActionCommand())){
+        switch (MainActivity.valueOf(e.getActionCommand())) {
+            case ADD_AXIOMA:
+                this.addAxioma();
+                break;
+
+            case ACCEPT_INFO:
+                break;
+
+            case ADD_PRODUCTION:
+                this.addProduction();
+                break;
+            case ADD_SYMBOL_TERMINAL:
+                this.addSymbolTerminal();
+                break;
+            case ADD_SYMBOL_NOT_TERMINAL:
+                this.addSymbolNotTermianl();
+                break;
 
         }
+
+    }
+
+    private void addSymbolNotTermianl() {
+
+    }
+
+    private void addSymbolTerminal() {
+    }
+
+    private void addProduction() {
+    }
+
+    private void acceptInfo() {
+    }
+
+    private void addAxioma() {
 
     }
 }

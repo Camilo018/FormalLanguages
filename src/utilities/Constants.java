@@ -18,13 +18,12 @@ public class Constants {
     public static final int MINIMUM_WIDTH = 720;
     public static final int MINIMUM_HEIGHT = 480;
 
-    public static final String ICON_ADD =  "/images/addIcon.png";
+    public static final String ICON_ADD = "/images/addIcon.png";
 
     public static final String BACKGROUND_IMAGE = "/images/background.jpg";
     public static final String PERSONS_PROJECT = "<html><body align=\"justify\"> Este proyecto es presentado por: <br><br>" + " - Cristian Camilo Lopez Niño <br>" + " - Juan Camilo Hurtado Baez<br>" +
             " - Brayan Steven Pineda Pachon </body></html>";
     public static Font ralewayFont = new Font("Raleway", Font.PLAIN, 18);
-
 
 
     public static JLabel getSpace(int top, int left, int bottom, int right) {
@@ -53,7 +52,20 @@ public class Constants {
     public static RSButtonRiple btnRiple(String texto, String command, ActionListener actionListener, String color, String urlIcon) {
         RSButtonRiple btnRiple = new RSButtonRiple();
         btnRiple.setText(texto);
+
+
+        btnRiple.setActionCommand(command);
+        btnRiple.addActionListener(actionListener);
+        btnRipleFeatures(btnRiple, color);
         btnRiple.setIcon(new ImageIcon(Constants.class.getResource(urlIcon)));
+        btnRiple.setBackground(new Color(255,255,255,0));
+        return btnRiple;
+    }
+
+    public static RSButtonRiple btnRipleTwo(String texto, String command, ActionListener actionListener, String color) {
+        RSButtonRiple btnRiple = new RSButtonRiple();
+        btnRiple.setText(texto);
+
 
         btnRiple.setActionCommand(command);
         btnRiple.addActionListener(actionListener);
@@ -63,7 +75,7 @@ public class Constants {
 
     private static void btnRipleFeatures(RSButtonRiple rsButtonRiple, String color) {
         rsButtonRiple.setFocusable(false);
-        rsButtonRiple.setColorHover(Color.decode("#2ecc71"));
+        rsButtonRiple.setColorHover(Color.decode("#27ae60"));
         rsButtonRiple.setBackground(Color.decode(color));
         rsButtonRiple.setFont(fontBtn(16));
         rsButtonRiple.setBorderPainted(false);
